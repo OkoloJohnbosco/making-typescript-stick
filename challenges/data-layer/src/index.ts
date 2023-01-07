@@ -91,3 +91,33 @@ const cs: DataStoreMethods = {} as any;
 
 let age = 35;
 age = Number.NaN;
+
+class Person {
+  #name: string;
+  private age: number;
+  constructor(name: string, age: number) {
+    this.#name = name;
+    this.age = age;
+  }
+}
+class Student extends Person {
+  #name: string | string[];
+  // private age: number;
+  constructor(name: string, age: number | null) {
+    super(name, age || 0);
+    this.#name = name;
+    // this.age = age;
+  }
+}
+
+type Color = {
+  red: number;
+  green: number;
+  blue: number;
+};
+
+class ColorValue implements Color {
+  constructor(public red: number, public green: number, public blue: number) {}
+}
+const c = new ColorValue(4, 3, 2);
+console.log(c.blue);
