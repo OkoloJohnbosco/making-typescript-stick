@@ -27,6 +27,10 @@ type DataStoreMethods = {
   ) => DataEntityMap[K];
 } & {
   [K in DataEntityMapKeys as `clear${Capitalize<K>}s`]: () => void;
+} & {
+  [K in DataEntityMapKeys as `add${Capitalize<K>}`]: (
+    args: DataEntityMap[K]
+  ) => DataEntityMap[K];
 };
 
 function isDefined<T>(x: T | undefined): x is T {
@@ -50,6 +54,12 @@ export class DataStore implements DataStoreMethods {
     if (!song) throw new Error(`Could not find song with id ${id}`);
     return song;
   }
+
+  addSong(song: Song) {
+    this.#data.song[song.id] = song;
+    return song;
+  }
+
   clearSongs() {
     this.#data.song = {};
   }
@@ -64,6 +74,12 @@ export class DataStore implements DataStoreMethods {
     if (!movie) throw new Error(`Could not find movie with id ${id}`);
     return movie;
   }
+
+  addMovie(movie: Movie) {
+    this.#data.movie[movie.id] = movie;
+    return movie;
+  }
+
   clearMovies() {
     this.#data.movie = {};
   }
@@ -71,4 +87,4 @@ export class DataStore implements DataStoreMethods {
 
 // const cs = new DataStore();
 const cs: DataStoreMethods = {} as any;
-// cs.
+// cs.a
