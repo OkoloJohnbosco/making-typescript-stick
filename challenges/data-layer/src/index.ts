@@ -92,6 +92,7 @@ const cs: DataStoreMethods = {} as any;
 let age = 35;
 age = Number.NaN;
 
+// The power of # private class
 class Person {
   #name: string;
   private age: number;
@@ -110,6 +111,7 @@ class Student extends Person {
   }
 }
 
+// The power of public class
 type Color = {
   red: number;
   green: number;
@@ -121,3 +123,20 @@ class ColorValue implements Color {
 }
 const c = new ColorValue(4, 3, 2);
 console.log(c.blue);
+
+// Don't use Enums this way
+// enum Language {
+//   TypeScript = "TS",
+//   JavaScript,
+// }
+// Ends here
+enum Editor {
+  SublimeText,
+  VSCode = "vscode",
+}
+enum Linter {
+  ESLint,
+  TSLint = "tslint",
+  JSLint = 3,
+  JSHint,
+}
