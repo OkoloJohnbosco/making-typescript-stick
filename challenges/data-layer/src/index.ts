@@ -88,3 +88,6 @@ export class DataStore implements DataStoreMethods {
 // const cs = new DataStore();
 const cs: DataStoreMethods = {} as any;
 // cs.a
+
+let age = 35;
+age = Number.NaN;
