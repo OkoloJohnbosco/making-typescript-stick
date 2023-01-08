@@ -1,7 +1,14 @@
 import fetch from "node-fetch";
 
+class SelectorResult {
+  #elements;
+
+  constructor(elements: NodeListOf<Element>) {
+    this.#elements = elements;
+  }
+}
 function $(selector: string): any {
-  return {} as any;
+  return new SelectorResult(document.querySelectorAll(selector));
 }
 
 namespace $ {
