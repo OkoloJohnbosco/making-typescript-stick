@@ -48,14 +48,14 @@ function $(selector: string) {
 namespace $ {
   export function ajax({
     url,
-    successCb,
+    success,
   }: {
     url: string;
-    successCb: (data: any) => void;
+    success: (data: any) => void;
   }): any {
     fetch(url)
       .then((res) => res.json())
-      .then(successCb);
+      .then(success);
   }
 }
 
