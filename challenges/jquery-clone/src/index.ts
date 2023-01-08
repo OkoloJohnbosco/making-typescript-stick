@@ -7,6 +7,7 @@ class SelectorResult {
     this.#elements = elements;
   }
 
+  // html jquery method
   html(contents: string) {
     this.#elements.forEach((element) => {
       element.innerHTML = contents;
@@ -47,8 +48,15 @@ function $(selector: string) {
 }
 
 namespace $ {
-  export function ajax(...args: any[]): any {
-    return {} as any;
+  export function ajax(
+    url: string,
+    successCb: (data: any) => void,
+    errorCb: (err: Error) => void
+  ): any {
+    fetch(url)
+      .then((res) => res.json())
+      .then(successCb)
+      .catch(errorCb);
   }
 }
 
