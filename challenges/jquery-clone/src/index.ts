@@ -12,14 +12,28 @@ class SelectorResult {
       element.innerHTML = contents;
     });
   }
-  on(eventType: string, callback: () => void) {
+
+  on<K extends keyof HTMLElementEventMap>(
+    eventType: K,
+    callback: (event: HTMLElementEventMap[K]) => void
+  ) {
     this.#elements.forEach((element) => {
-      element.addEventListener(eventType, callback);
+      // if (element instanceof HTMLElement) {
+      // }
+      const elem = element as HTMLElement;
+      elem.addEventListener(eventType, callback);
+    });
+  }
+  hide() {
+    this.#elements.forEach((element) => {
+      // element;
+      const elem = element as HTMLElement;
+      elem.style.visibility = "hidden";
     });
   }
 }
 
-function $(selector: string): any {
+function $(selector: string) {
   return new SelectorResult(document.querySelectorAll(selector));
 }
 
@@ -31,4 +45,4 @@ namespace $ {
 
 export default $;
 
-$(".myDiv").html("kdkk");
+// $("jso").on("c")
