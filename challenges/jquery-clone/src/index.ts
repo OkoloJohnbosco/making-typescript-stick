@@ -6,7 +6,19 @@ class SelectorResult {
   constructor(elements: NodeListOf<Element>) {
     this.#elements = elements;
   }
+
+  html(contents: string) {
+    this.#elements.forEach((element) => {
+      element.innerHTML = contents;
+    });
+  }
+  on(eventType: string, callback: () => void) {
+    this.#elements.forEach((element) => {
+      element.addEventListener(eventType, callback);
+    });
+  }
 }
+
 function $(selector: string): any {
   return new SelectorResult(document.querySelectorAll(selector));
 }
@@ -18,3 +30,5 @@ namespace $ {
 }
 
 export default $;
+
+$(".myDiv").html("kdkk");
