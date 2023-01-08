@@ -19,8 +19,6 @@ class SelectorResult {
     callback: (event: HTMLElementEventMap[K]) => void
   ) {
     this.#elements.forEach((element) => {
-      // if (element instanceof HTMLElement) {
-      // }
       const elem = element as HTMLElement;
       elem.addEventListener(eventType, callback);
     });
@@ -48,15 +46,16 @@ function $(selector: string) {
 }
 
 namespace $ {
-  export function ajax(
-    url: string,
-    successCb: (data: any) => void,
-    errorCb: (err: Error) => void
-  ): any {
+  export function ajax({
+    url,
+    successCb,
+  }: {
+    url: string;
+    successCb: (data: any) => void;
+  }): any {
     fetch(url)
       .then((res) => res.json())
-      .then(successCb)
-      .catch(errorCb);
+      .then(successCb);
   }
 }
 
