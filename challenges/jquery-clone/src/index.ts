@@ -24,11 +24,20 @@ class SelectorResult {
       elem.addEventListener(eventType, callback);
     });
   }
+
   hide() {
     this.#elements.forEach((element) => {
       // element;
       const elem = element as HTMLElement;
       elem.style.visibility = "hidden";
+    });
+  }
+
+  show() {
+    this.#elements.forEach((element) => {
+      // element;
+      const elem = element as HTMLElement;
+      elem.style.visibility = "visible";
     });
   }
 }
